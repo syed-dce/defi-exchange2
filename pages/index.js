@@ -15,14 +15,15 @@ ChartJS.register(
 export default function Home() {
 
 	const delay = 1500;
-	let currentPrice = null;
+	var currentPrice = null;
 
-	const [cryptoData, setCryptoData] = useState(0);
+	const [cryptoData, setCryptoData] = useState(1);
 	const [priceDelta, setPriceDelta] = useState('black');
 	const [realTimeDataQueueState, setRealTimeDataQueueState] = useState([]);
 	const [data, setData]= useState(null);
 
 	var realTimeDataQueue = [];
+	var lastPriceFLoat = cryptoData;
 
 	useEffect(() => {
 		let ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
@@ -37,15 +38,20 @@ export default function Home() {
 			return;
 		}
 
-		let currentPriceFloat = parseFloat(currentPrice.p);
-		let lastPriceFLoat = cryptoData;
-		setCryptoData(currentPriceFloat);
+		var currentPriceFloat = parseFloat(currentPrice.p);
+		// lastPriceFLoat = cryptoData;
+
+		setCryptoData(cryptoData => currentPriceFloat);
 		realTimeDataQueue.push(currentPriceFloat);
 
 		if ( realTimeDataQueue.length > 4) {
 			realTimeDataQueue.shift();
 		}
 		setRealTimeDataQueueState(realTimeDataQueue);
+
+		console.log(currentPriceFloat)
+		console.log(lastPriceFLoat)
+		console.log(currentPriceFloat > lastPriceFLoat)
 
 		if (currentPriceFloat > lastPriceFLoat) {
 			setPriceDelta('green');
@@ -54,6 +60,9 @@ export default function Home() {
 		} else {
 			setPriceDelta('black');
 		}
+		lastPriceFLoat = currentPriceFloat;
+
+
 	}, delay);
 
 
@@ -73,7 +82,7 @@ export default function Home() {
 					{ priceDelta === 'red' ? <FaCaretDown size={45} color='red' /> : <></> }
 				</h2>
 
-				<div className="App" style={{width:'800px', height:'800px'}}>
+				<div className="App" style={{width:'600px', height:'600px'}}>
 				<Line 
 					data={{
 						labels: ["T-3", "T-2", "Last Price", "Current Price"],
@@ -97,7 +106,7 @@ export default function Home() {
 							   ticks: {
 							      max: 30000,
 							      min: 10000,
-							      stepValue: 3
+							      stepSize: 3
 							    }
 							  }]
 							 },

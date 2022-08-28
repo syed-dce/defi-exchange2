@@ -6,6 +6,10 @@ Tech stack: react, next.js, websockets
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+## View LIVE on Vercel:
+Open [https://fourthtry-ten.vercel.app](https://fourthtry-ten.vercel.app)
+
 ## Getting Started
 
 First, run the development server:

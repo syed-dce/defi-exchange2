@@ -1,6 +1,6 @@
 DEFI-EXCHANGE
 
-https://user-images.githubusercontent.com/64376865/187016771-2a13aca0-eba9-4884-bf26-012629ad79e1.mp4
+https://user-images.githubusercontent.com/64376865/187071704-66db99e4-9ae4-48c1-86c6-ef0625c4b463.mp4
 
 Tech stack: react, next.js, websockets
 

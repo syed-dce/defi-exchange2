@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@qognicafinance/react-lightweight-charts": "^1.0.5",
     "chart.js": "^3.9.1",
     "next": "12.2.5",
     "react": "18.2.0",

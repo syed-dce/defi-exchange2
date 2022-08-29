@@ -31,6 +31,10 @@ export default function Home() {
 			currentPrice = JSON.parse(event.data);
 
 		}
+
+		return () => {
+			ws.close();
+		}
 	}, []);
 
 	setInterval(() => {
